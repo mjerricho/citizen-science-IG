@@ -96,6 +96,8 @@ Run `python3 runner_citsci_upload.py <path to config.json> <path to file>`.
 2. About Graph Explorer: https://developer.microsoft.com/en-us/graph/graph-explorer
 3. About upload sessions: https://docs.microsoft.com/en-us/graph/api/driveitem-createuploadsession?view=graph-rest-1.0
 4. Getting response upload sesion: https://stackoverflow.com/questions/60402838/how-to-perform-a-resumable-upload-to-a-sharepoint-site-not-root-subfolder-usin
+5. About permission names: https://docs.microsoft.com/en-us/graph/permissions-reference
+6. Constraints on username and password flow: https://github.com/AzureAD/microsoft-authentication-library-for-python/wiki/Username-Password-Authentication
 
 ## Credit
 Marcellinus Jerricho (marcellinus.jerricho@u.yale-nus.edu.sg)
