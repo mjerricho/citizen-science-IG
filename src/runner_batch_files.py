@@ -13,7 +13,7 @@ class BatchRunner:
         '''
         self.debug = debug
         if self.debug:
-            print(f'{sys.argv[0]} started.')
+            print('BatchRunner started.')
         if not os.path.exists(src_path):
             raise Exception(f'Source {src_path} directory not found.')
         self.src_path = src_path
