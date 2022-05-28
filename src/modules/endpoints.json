@@ -1,0 +1,8 @@
+{
+  "endpoint_get_metadata_of_location_files_channel": "https://graph.microsoft.com/v1.0/teams/a7ecd3c0-a388-4c9a-9603-7e6728dabe46/channels/19%3ac2a0fac57a734c33a57a3918a5fb50c0%40thread.tacv2/filesFolder",
+  "endpoint_get_channels": "https://graph.microsoft.com/v1.0/teams/a7ecd3c0-a388-4c9a-9603-7e6728dabe46/channels",
+  "endpoint_get_sharepoint_root": "https://graph.microsoft.com/v1.0/drives/b!VjPcd4hY8UypMaRdiOTZdzu3sbAvyVNBpfJGwXe5mV5hjoZNNjAGS4dGXf-aJBSR",
+  "endpoint_get_drive_to_upload_drive": "https://graph.microsoft.com/v1.0/drives/b!VjPcd4hY8UypMaRdiOTZdzu3sbAvyVNBpfJGwXe5mV5hjoZNNjAGS4dGXf-aJBSR/items/01EUFWMO225TI6BD5MRBA3YKMQJ6YO2MKX",
+  "endpoint_get_drive_from_teams": "https://graph.microsoft.com/v1.0/groups/a7ecd3c0-a388-4c9a-9603-7e6728dabe46/drive",
+  "endpoint_get_items_in_team_drive": "https://graph.microsoft.com/v1.0/groups/a7ecd3c0-a388-4c9a-9603-7e6728dabe46/drive/items/root/children"
+}
