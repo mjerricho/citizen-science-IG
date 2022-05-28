@@ -1,13 +1,13 @@
 import os
-from pprint import pprint
 from enum import Enum
+from pprint import pprint
 
 import ffmpeg
 import numpy as np
 import regex as re
 
 
-class Md(Enum):
+class Md(str, Enum):
     FILEPATH = "filepath"
     FILENAME = "filename"
     DATETIME = "creation_datetime"
@@ -49,6 +49,7 @@ class ExtractMetadata:
         }
         if self.debug:
             print("Extracting metadata initialised.")
+        self.metadata = [md.value for md in list(Md)]
 
     def get_metadata_raw(self, media_file: str) -> dict:
         '''
@@ -180,16 +181,16 @@ class ExtractMetadata:
         file_path = metadata['format'].get('filename', None)
         file_name = os.path.basename(file_path)
         return {
-            Md.FILEPATH: file_path,
-            Md.FILENAME: file_name,
-            Md.DATETIME: self.get_creation_time(metadata),
-            Md.LAT: latitude,
-            Md.LONG: longitude,
-            Md.SRC: geodata_src,
-            Md.REGION: region,
-            Md.DURATION: self.get_duration(metadata),
-            Md.RES_WIDTH: res_width,
-            Md.RES_HEIGHT: res_height
+            Md.FILEPATH.value: file_path,
+            Md.FILENAME.value: file_name,
+            Md.DATETIME.value: self.get_creation_time(metadata),
+            Md.LAT.value: latitude,
+            Md.LONG.value: longitude,
+            Md.SRC.value: geodata_src,
+            Md.REGION.value: region,
+            Md.DURATION.value: self.get_duration(metadata),
+            Md.RES_WIDTH.value: res_width,
+            Md.RES_HEIGHT.value: res_height
         }
 
     def print_metadata(self, metadata: dict):

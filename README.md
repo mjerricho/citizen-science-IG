@@ -50,13 +50,14 @@ Given that you already have data of observations, we also have provided the tool
 
 ### Setup
 1. Name the observation files accordingly based on its location of observation.
-2. Adapt the ExtractMetadata attribute (`self.abbr_to_geodata`) to the naming convention that you use.
+2. Adapt the ExtractMetadata attribute (`self.abbr_to_geodata`) to the naming convention that you use. Please note that the `region` column in the metadata extracted is tied to the abbreviations and corresponding geodata used.
    1. The keys are the abbreviations according to the naming convention.
    2. The values are the (latitude, longitude) in that order.
 3. To change the metadata to be extracted:
    1. Check if the metadata desired is within the metadata by using the `runner_single_file.py`.
    2. Edit the enumerated metadata (`Md`) at the top of `ExtractMetadata.py`.
    3. Get the metadata desired in `get_metadata_processed`, set it as value to the enumerated metadata defined, and return it as a dictionary.
+4. The video formats accomodated for the `runner_batch_files.py` are rather limited. Edit if necessary.
 
 ### Extracting
 1. Extracting a single file and print out the result:
