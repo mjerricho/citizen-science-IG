@@ -53,6 +53,10 @@ Given that you already have data of observations, we also have provided the tool
 2. Adapt the ExtractMetadata attribute (`self.abbr_to_geodata`) to the naming convention that you use.
    1. The keys are the abbreviations according to the naming convention.
    2. The values are the (latitude, longitude) in that order.
+3. To change the metadata to be extracted:
+   1. Check if the metadata desired is within the metadata by using the `runner_single_file.py`.
+   2. Edit the enumerated metadata (`Md`) at the top of `ExtractMetadata.py`.
+   3. Get the metadata desired in `get_metadata_processed`, set it as value to the enumerated metadata defined, and return it as a dictionary.
 
 ### Extracting
 1. Extracting a single file and print out the result:

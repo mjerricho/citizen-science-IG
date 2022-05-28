@@ -1,9 +1,23 @@
 import os
 from pprint import pprint
+from enum import Enum
 
 import ffmpeg
 import numpy as np
 import regex as re
+
+
+class Md(Enum):
+    FILEPATH = "filepath"
+    FILENAME = "filename"
+    DATETIME = "creation_datetime"
+    LAT = "latitude"
+    LONG = "longitude"
+    SRC = "source"
+    REGION = "region"
+    DURATION = "duration"
+    RES_WIDTH = "resolution_width"
+    RES_HEIGHT = "resolution_height"
 
 
 class ExtractMetadata:
@@ -33,9 +47,6 @@ class ExtractMetadata:
             "Punggol": np.array([1.3984, 103.9072]),
             "PRP": np.array([1.3984, 103.9072])
         }
-        self.metadata = ("filepath", "creation_datetime", "latitude",
-                         "longitude", "source", "region", "duration",
-                         "res_width", "res_height")
         if self.debug:
             print("Extracting metadata initialised.")
 
@@ -162,33 +173,29 @@ class ExtractMetadata:
         input:
             raw metadata from get_raw_metadata <dict>
         ouput:
-            dictionary of self.metadata, which includes
-                filepath
-                datetime
-                latitude
-                longitude
-                geodata_src
-                region
-                duration
-                res_width
-                res_height
+            dictionary of the enumerated metadata.
         '''
         latitude, longitude, geodata_src, region = self.get_geodata(metadata)
         res_width, res_height = self.get_resolution(metadata)
+        file_path = metadata['format'].get('filename', None)
+        file_name = os.path.basename(file_path)
         return {
-            self.metadata[0]: metadata['format'].get('filename', None),
-            self.metadata[1]: self.get_creation_time(metadata),
-            self.metadata[2]: latitude,
-            self.metadata[3]: longitude,
-            self.metadata[4]: geodata_src,
-            self.metadata[5]: region,
-            self.metadata[6]: self.get_duration(metadata),
-            self.metadata[7]: res_width,
-            self.metadata[8]: res_height
+            Md.FILEPATH: file_path,
+            Md.FILENAME: file_name,
+            Md.DATETIME: self.get_creation_time(metadata),
+            Md.LAT: latitude,
+            Md.LONG: longitude,
+            Md.SRC: geodata_src,
+            Md.REGION: region,
+            Md.DURATION: self.get_duration(metadata),
+            Md.RES_WIDTH: res_width,
+            Md.RES_HEIGHT: res_height
         }
 
     def print_metadata(self, metadata: dict):
         '''
         print the metadata in an easily readable way.
+        input:
+            dictionary of the metadata.
         '''
         pprint(metadata)

@@ -7,6 +7,10 @@ from modules.ExtractMetadata import ExtractMetadata
 
 class BatchRunner:
     def __init__(self, debug=False) -> None:
+        '''
+        Initialise a class that will extract the metadata from files
+        in a directory.
+        '''
         self.debug = debug
         if self.debug:
             print(f'{sys.argv[0]} started.')

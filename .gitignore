@@ -133,6 +133,7 @@ dmypy.json
 config.sh
 config.json
 ffmpeg
+.vscode
 # csv files 
 *.csv
 # videos and images
