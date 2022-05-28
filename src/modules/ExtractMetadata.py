@@ -1,3 +1,4 @@
+import os
 from pprint import pprint
 
 import ffmpeg
@@ -46,6 +47,8 @@ class ExtractMetadata:
         output:
             Dictionary of the metadata.
         '''
+        if not os.path.exists(media_file):
+            raise Exception(f'{media_file} not found.')
         return ffmpeg.probe(media_file)
 
     def get_creation_time(self, metadata: dict) -> str:
@@ -79,9 +82,9 @@ class ExtractMetadata:
         return region
 
     def ret_float(self, value: str) -> float:
-        return re.sub("[^0-9.]", "", value[:6])
+        return re.sub("[^0-9.]", "", value)
 
-    def get_geodata(self, metadata: dict) -> tuple[float, float, str]:
+    def get_geodata(self, metadata: dict) -> "tuple[float, float, str]":
         '''
         Extract the location of the video from the tags, if any.
         The method checks if the video is taken from an Apple product.
@@ -132,7 +135,7 @@ class ExtractMetadata:
         ret_dur = float(duration) if duration is not None else None
         return ret_dur
 
-    def get_resolution(self, metadata: dict) -> tuple[int, int]:
+    def get_resolution(self, metadata: dict) -> "tuple[int, int]":
         '''
         Get the resolution of the video.
         input:

@@ -89,7 +89,7 @@ class CitizenScienceUpload:
         dir_path = os.getcwd()
         file_path = dir_path + "/" + file_name
         if not os.path.exists(file_path):
-            raise Exception(f'{file_name} is not found.')
+            raise Exception(f'{file_name} not found.')
 
         # getting file
         with open(file_path, 'rb') as upload:

@@ -11,9 +11,8 @@ if __name__ == '__main__':
         sys.exit(1)
     print(f'{sys.argv[0]} started.')
     media_file = sys.argv[1]
-    extract_metadata = ExtractMetadata()
+    extract_metadata = ExtractMetadata(debug=True)
     metadata_raw = extract_metadata.get_metadata_raw(media_file)
     metadata_processed = extract_metadata.get_metadata_processed(metadata_raw)
     extract_metadata.print_metadata(metadata_processed)
-    # extract_metadata.print_metadata(metadata_processed)
     print(f'{sys.argv[0]} finished.')

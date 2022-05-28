@@ -55,7 +55,7 @@ Given that you already have data of observations, we also have provided the tool
    2. The values are the (latitude, longitude) in that order.
 
 ### Extracting
-1. Extracting a single file:
+1. Extracting a single file and print out the result:
    1. Run `python3 src/runner_single_file.py <filepath>`.
 2. Extracting a batch of files in a directory:
    1. Run `python3 src/runner_batch_file.py <src_dirpath> <dest_dirpath>`.
