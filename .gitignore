@@ -141,3 +141,4 @@ ffmpeg
 *.mp4
 *.jpg 
 result/
+testing/
