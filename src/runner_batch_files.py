@@ -67,7 +67,7 @@ if __name__ == '__main__':
     '''
     if len(sys.argv) < 3:
         print('''
-USAGE: python3 src/runner_batch_file.py <src_dirpath> <dest_dirpath>''')
+USAGE: python3 src/runner_batch_files.py <src_dirpath> <dest_dirpath>''')
         sys.exit(1)
     runner = BatchRunner()
     runner.run()
