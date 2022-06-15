@@ -89,7 +89,7 @@ This script complements the citizen science project. After users have uploaded t
       2. "https://graph.microsoft.com/v1.0/groups/{ team_id }/drive/items/root/children"  
 
 ### Running the script
-Run `python3 runner_citsci_upload.py <path to config.json> <path to file>`.
+Run `python3 runner_citsci_upload.py <path to config.json> <path_to_folder_to_upload>`.
 
 ### Resources
 1. About Microsoft Graph: https://docs.microsoft.com/en-us/graph/overview

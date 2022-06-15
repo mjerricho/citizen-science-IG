@@ -1,6 +1,7 @@
 import json
 import logging
 import os
+import shutil
 from pprint import pprint
 
 import msal
@@ -74,6 +75,13 @@ class CitizenScienceUpload:
             if 65001 in result.get("error_codes", []):
                 print("Visit this to consent:",
                       app.get_authorization_request_url(self.config["scope"]))
+
+    def zip_dir(self, rel_dir_path, output_filename):
+        '''
+        Given the path to a folder, this method will zip the folder
+        under <output_filename>.zip.
+        '''
+        shutil.make_archive(output_filename, 'zip', rel_dir_path)
 
     def upload_file(self, rel_file_path, headers):
         '''
