@@ -127,3 +127,19 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Others
+.DS_Store
+config.sh
+config.json
+ffmpeg
+.vscode
+# csv files 
+*.csv
+# videos and images
+*.jpeg
+*.png 
+*.mp4
+*.jpg 
+result/
+testing/

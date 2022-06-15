@@ -1,0 +1,14 @@
+{
+    "login_endpoint": "https://login.microsoftonline.com/",
+    "client_id": "FILL UP",
+    "tenant_id": "FILL UP",
+    "team_id": "FILL UP",
+    "channel_id": "FILL UP",
+    "drive_id": "FILL UP",
+    "item_id": "FILL UP",
+    "username": "FILL UP",
+    "password": "FILL UP",
+    "scope": ["Files.Read", "Files.ReadWrite", "Team.ReadBasic.All", "Files.Read.All", "Sites.Read.All", "Files.ReadWrite.All"],
+    "client_secret": "FILL UP",
+    "endpoint": "https://graph.microsoft.com/v1.0"
+}
