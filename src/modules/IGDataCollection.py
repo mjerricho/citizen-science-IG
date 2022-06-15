@@ -112,7 +112,9 @@ ID: {post.location.id} | lat: {post.location.lat} | long: {post.location.lng}
                                 "mediaURL": self.fbo(post.url),
                                 "isVideo": self.fbo(post.is_video),
                                 "videoDuration": self.fbo(post.video_duration),
-                                "hashtag": self.fbo(self.hashtag)})
+                                "hashtag": self.fbo(self.hashtag),
+                                "caption": self.fbo(post.caption),
+                                "captionHashtags": self.fbo(post.caption_hashtags)})
                     if download:
                         self.L.download_post(post, target="#hashtag")
                         print(f'''\

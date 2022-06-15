@@ -1,4 +1,4 @@
-# citizen-science-ync
+# citizen-science-IG
 This project aims to set up a citizen science platform for the public to upload their videos on animals observation. The data gathered will initially be stored locally, but it can also be automatically stored in a designated cloud storage. In this project, we provide an example of how the data gathered can be stored automatically into Microsoft OneDrive under a Microsoft tenant organisation. Please note that the metadata extraction and Instagram scraping would be applicable to all users, but the automatic cloud storage would differ significantly for each user.
 
 ## Package installation
@@ -100,6 +100,6 @@ Run `python3 runner_citsci_upload.py <path to config.json> <path to file>`.
 6. Constraints on username and password flow: https://github.com/AzureAD/microsoft-authentication-library-for-python/wiki/Username-Password-Authentication
 
 ## Credit
-Marcellinus Jerricho (marcellinus.jerricho@u.yale-nus.edu.sg)
-Philip John (philip.johns@yale-nus.edu.sg)
-Jeremy Osborn (osborn.jeremy@gmail.com)
+- Marcellinus Jerricho (marcellinus.jerricho@u.yale-nus.edu.sg)
+- Philip John (philip.johns@yale-nus.edu.sg)
+- Jeremy Osborn (osborn.jeremy@gmail.com)
