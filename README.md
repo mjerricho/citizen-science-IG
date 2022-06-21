@@ -101,5 +101,5 @@ Run `python3 runner_citsci_upload.py <path to config.json> <path_to_folder_to_up
 
 ## Credit
 - Marcellinus Jerricho (marcellinus.jerricho@u.yale-nus.edu.sg)
-- Philip John (philip.johns@yale-nus.edu.sg)
+- Philip Johns (philip.johns@yale-nus.edu.sg)
 - Jeremy Osborn (osborn.jeremy@gmail.com)
