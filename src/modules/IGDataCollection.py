@@ -118,6 +118,7 @@ ID: {post.location.id} | lat: {post.location.lat} | long: {post.location.lng}
                     format = "%Y-%m-%d_%H-%M-%S"
                     postDate = post.date_utc.strftime(format)
                     postID = f"{postDate}_UTC_{post.profile}"
+                    ht_date, ht_month, ht_year = self.get_date_month_year(post.caption_hashtags)
                     mds.append({"postID": self.fbo(postID),
                                 "postDate": self.fbo(postDate),
                                 "locationID": self.fbo(post.location.id),
@@ -131,7 +132,10 @@ ID: {post.location.id} | lat: {post.location.lat} | long: {post.location.lng}
                                 "videoDuration": self.fbo(post.video_duration),
                                 "hashtag": self.fbo(self.hashtag),
                                 "caption": self.fbo(post.caption),
-                                "captionHashtags": self.fbo(post.caption_hashtags)})
+                                "captionHashtags": self.fbo(post.caption_hashtags),
+                                "hashtag_date": ht_date,
+                                "hashtag_month": ht_month,
+                                "hashtag_year": ht_year})
                     if download:
                         self.L.download_post(post, target="#hashtag")
                         print(f'''\
