@@ -60,6 +60,23 @@ class IGDataCollection:
         except NameError:
             return None
 
+    def get_date_month_year(self, post_hashtags):
+        '''
+        Given the list of hashtags used in the post, this method will
+        try to extract the date, month, and year from the specific hashtag
+        starting with "date". One assumption that this method
+        is built on is that the date hashtag will start with
+        "date" and is 12 characters long in total.
+        Example: #date01012022
+
+        input:
+            post_hashtags<list>
+        '''
+        for hashtag in post_hashtags:
+            if ("date" in hashtag) and (len(hashtag) == 12):
+                return hashtag[4:6], hashtag[6:8], hashtag[8:]
+        return None, None, None
+
     def scrape_data(self, max_num=10, download=True, save_md=False):
         '''
         Given the hashtag in the initialisation process, this
@@ -101,6 +118,7 @@ ID: {post.location.id} | lat: {post.location.lat} | long: {post.location.lng}
                     format = "%Y-%m-%d_%H-%M-%S"
                     postDate = post.date_utc.strftime(format)
                     postID = f"{postDate}_UTC_{post.profile}"
+                    ht_date, ht_month, ht_year = self.get_date_month_year(post.caption_hashtags)
                     mds.append({"postID": self.fbo(postID),
                                 "postDate": self.fbo(postDate),
                                 "locationID": self.fbo(post.location.id),
@@ -114,7 +132,10 @@ ID: {post.location.id} | lat: {post.location.lat} | long: {post.location.lng}
                                 "videoDuration": self.fbo(post.video_duration),
                                 "hashtag": self.fbo(self.hashtag),
                                 "caption": self.fbo(post.caption),
-                                "captionHashtags": self.fbo(post.caption_hashtags)})
+                                "captionHashtags": self.fbo(post.caption_hashtags),
+                                "hashtag_date": ht_date,
+                                "hashtag_month": ht_month,
+                                "hashtag_year": ht_year})
                     if download:
                         self.L.download_post(post, target="#hashtag")
                         print(f'''\
