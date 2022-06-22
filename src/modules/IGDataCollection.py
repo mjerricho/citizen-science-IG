@@ -60,6 +60,23 @@ class IGDataCollection:
         except NameError:
             return None
 
+    def get_date_month_year(self, post_hashtags):
+        '''
+        Given the list of hashtags used in the post, this method will
+        try to extract the date, month, and year from the specific hashtag
+        starting with "date". One assumption that this method
+        is built on is that the date hashtag will start with
+        "date" and is 12 characters long in total.
+        Example: #date01012022
+
+        input:
+            post_hashtags<list>
+        '''
+        for hashtag in post_hashtags:
+            if ("date" in hashtag) and (len(hashtag) == 12):
+                return hashtag[4:6], hashtag[6:8], hashtag[8:]
+        return None, None, None
+
     def scrape_data(self, max_num=10, download=True, save_md=False):
         '''
         Given the hashtag in the initialisation process, this
