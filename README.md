@@ -1,24 +1,33 @@
 # citizen-science-IG
-This project aims to set up a citizen science platform for the public to upload their videos on animals observation. The data gathered will initially be stored locally, but it can also be automatically stored in a designated cloud storage. In this project, we provide an example of how the data gathered can be stored automatically into Microsoft OneDrive under a Microsoft tenant organisation. Please note that the metadata extraction and Instagram scraping would be applicable to all users, but the automatic cloud storage would differ significantly for each user.
+This project aims to build a Citizen Science methodology for researchers and data collectors to efficiently and quickly gather photo and video observations of a certain subject. We will be using Instagram as the main platform for data collection due to its popularity and accessibility among users and robust scraper tool for developers. For the case where you already have a repository of data, we also provide a metadata extractor tool to quickly summarise important information. Once you have acquired the observations and metadata needed, we provide an example of how the data gathered can be stored automatically into Microsoft OneDrive under a Microsoft tenant organisation.
 
+Please note that the Instagram scraping and metadata extractor tool would be applicable to all users, but the automatic cloud storage would differ significantly for each user. It is advisable to consult your organisation IT team before you start uploading data into cloud storage. This document will be structured according to the following:
+1. [Package Installation](#package-installation)
+2. [Instagram data collection](#instagram-data-collection) 
+3. [Manual metadata extraction](#manual-metadata-extraction)
+4. [Automatic upload to cloud storage](#automatic-upload-to-cloud-storage)
+5. [Credits](#credit)
+   
 ## Package installation
+The required python packages are included in [requirements.txt](requirements.txt). Please make sure that you carry out the instructions correctly.
 ### Setting up virtual environment(optional)
 1. Run `python3 -m venv .venv`.
-2. Run `source .venv/bin/activate`.
+2. Run `source .venv/bin/activate` to activate the virtual environment. This command needs to be run **before every session**.
 
 ### Installing packages
 1. Run `pip install -r requirements.txt`.
    
-### installing ffmpeg
-The `requirements.txt` install the python wrapper for interacting with ffmpeg but it does not install the source code. To install ffmpeg source code, follow the instructions from https://www.ffmpeg.org/download.html.
+### Installing ffmpeg
+The `requirements.txt` install the python wrapper for interacting with ffmpeg but it does not install the source code. To install ffmpeg source code, follow the instructions from https://www.ffmpeg.org/download.html. `ffmpeg` is used to extract metadata from existing repository.
 1. Download the Source Code.
 2. Unzip the file.
-3. Execute `./ffmpeg/configure`.
-   1. If you are using an Apple product, you might need to open it twice, as ffmpeg is not by an identified developer.
+3. Execute `./ffmpeg/configure`. If you are using an Apple product, you might need to open it twice, as ffmpeg is not by an identified developer.
+4. Check if you have `ffmpeg` installed by running `ffmpeg` in the command line. It should return a text along this line: `ffmpeg version N-105288-g45e45a6060 Copyright (c) 2000-2022 the FFmpeg developers`.
 
 ## Instagram data collection
+The [Instagram Data Collection](src/modules/IGDataCollection.py) is an effective and low-cost solution for crowdsourcing more observations and raising awareness on a certain subject through social media. As a data collector, you have to [setup](#setup) the program and make sure that participants are aware of the participation [requirements](#requirements). As a participant, you have to **post** the observation with the **necessary hashtags** on a **public account**.
 ### Setup
-1. Create an Instagram account solely for scraping for safety reason.
+1. Create a new dispensable Instagram account solely for scraping for safety reasons. It is also advisable that you create a new dispansable email account for this project for the sign up process.
 2. Make sure to export your IG username and password before every session as:
    1. `export IG_USERNAME=<your-IG-usename>`
    2. `export IG_PASSWORD=<your-IG-password`
@@ -27,7 +36,7 @@ The `requirements.txt` install the python wrapper for interacting with ffmpeg bu
    5. `export REQUESTS_CA_BUNDLE=${CERT_PATH}`
 3. Make sure that the Instagram account that you use works by logging in yourself. Clear all setting configurations and other administration process.
 
-### Project Requirements
+### Requirements
 1. Make sure that participants post their observation with geotag on.
 2. Run the Setup[###Setup] in the command line.
 3. Update the `Runner_IG_collection.py` file to either check or download the posts.
