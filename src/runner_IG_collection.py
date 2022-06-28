@@ -24,5 +24,5 @@ Invalid input: The last input must be integer.
     result_dir = sys.argv[3]
     if not os.path.exists(result_dir):
         os.makedirs(result_dir)
-    IGDC = IGDataCollection(hashtag=hashtag, num_days_collect=num_days_collect, result_dir=result_dir)
+    IGDC = IGDataCollection(hashtag=hashtag, num_days_collect=num_days_collect, result_dir=result_dir, debug=True)
     IGDC.scrape_data(10, download=True, save_md=True)
