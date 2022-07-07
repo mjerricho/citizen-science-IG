@@ -7,7 +7,8 @@ import instaloader
 
 
 class IGDataCollection:
-    def __init__(self, num_days_collect=1,
+    def __init__(self,  username, password, 
+                 num_days_collect=1,
                  hashtag="sgotterproject",
                  result_dir="result",
                  debug=False) -> None:
@@ -40,9 +41,8 @@ class IGDataCollection:
                                          download_videos=True,
                                          download_video_thumbnails=False,
                                          download_comments=False)
-
-        self.IG_username = os.environ.get('IG_USERNAME')
-        self.IG_password = os.environ.get('IG_PASSWORD')
+        self.IG_username = username
+        self.IG_password = password
         if self.debug:
             print("Logging in.")
         self.L.login(self.IG_username, self.IG_password)
