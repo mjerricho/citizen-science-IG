@@ -1,6 +1,6 @@
 import sys
 from PyQt6.QtWidgets import ( QMainWindow, QApplication, QLabel, QLineEdit, QPushButton, QLineEdit, QGridLayout, QWidget )
-from src.modules.IGDataCollection import IGDataCollection
+from modules.IGScrape import IGScrape
 
 # Constants
 USERNAME = 'username'
@@ -98,7 +98,7 @@ class MainWindow(QMainWindow):
     def scrape(self):
         if self.check_input():
             self.update_text.setText('Logging in.')
-            IGDC = IGDataCollection(
+            IGDC = IGScrape(
                 username=self.line_edits[USERNAME].text(), 
                 password=self.line_edits[PASSWORD].text(), 
                 hashtag=self.line_edits[HASHTAG].text(), 
@@ -113,7 +113,6 @@ def main():
     w = MainWindow()
     w.show()
     app.exec()
-
 
 if __name__ == '__main__':
     main()

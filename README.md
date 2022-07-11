@@ -25,38 +25,37 @@ The `requirements.txt` install the python wrapper for interacting with ffmpeg bu
 4. Check if you have `ffmpeg` installed by running `ffmpeg` in the command line. It should return a text along this line: `ffmpeg version N-105288-g45e45a6060 Copyright (c) 2000-2022 the FFmpeg developers`.
 
 ## Instagram data collection
-The [Instagram Data Collection](src/modules/IGDataCollection.py) is a fast, effective, and low-cost solution for crowdsourcing more observations and raising awareness on a certain subject through social media. As a data collector, you have to [setup](#setup) the program and make sure that participants are aware of the participation [requirements](#requirements). As a participant, you have to **post** the observation with the **necessary hashtags** on a **public account**.
+The [Instagram Data Collection](src/modules/IGScrape.py) is a fast, effective, and low-cost solution for crowdsourcing more observations and raising awareness on a certain subject through social media. As a data collector, you have to [setup](#setup) the program and make sure that participants are aware of the participation [requirements](#requirements). As a participant, you have to **post** the observation with the **necessary hashtags** on a **public account**.
 ### Setup
 1. Create a new dispensable Instagram account solely for scraping for safety reasons. It is also advisable that you create a new dispensable email account for this project for the sign up process.
-2. Make sure to export your IG username and password before every session as:
-   1. `export IG_USERNAME=<your-IG-usename>`
-   2. `export IG_PASSWORD=<your-IG-password`
-   3. `CERT_PATH=$(python -m certifi)`
-   4. `export SSL_CERT_FILE=${CERT_PATH}`
-   5. `export REQUESTS_CA_BUNDLE=${CERT_PATH}`
+2. [Required if you want to uses the Command Line] Duplicate the `config_ig_to_duplicate.json` as `config_ig.json` and fill it up with the necessary information.
 3. Make sure that the Instagram account that you use works by logging in yourself. Clear all setting configurations and other administration process.
 
 ### Requirements
 1. Make sure that participants post their observation with geotag on.
-2. Run the Setup[###Setup] in the command line.
-3. Update the `Runner_IG_collection.py` file to either check or download the posts.
+2. Run the [Setup](###Setup) in the command line.
+3. Update the `Runner_IG_scrape.py` file to either check or download the posts.
 
 ### Methodology
-1. The `IGDataCollection.py` is well-documented with comments to explain how it works. Do check the implementation for better understanding of the class
-2. Initialising the `IGDataCollection` class would require arguments to set how many days worth of observation to check/download form Instagram, the hashtag to look for, and the result directory/path. It initialises the `Instaloader` instance for IG scraping and set the target directory for download.
-3. The `scrape_data` method is to scrape IG using the hashtag given in the IGDataCollection initialisation. User also needs to specify the number of posts limit and whether one wants to download the post, given that the post has geodata. It will iterate through each post until the post limit or no more post left to scrape or the user's Keyboard Interrupt. The user can also chooses to:
+1. The `IGScrape.py` is well-documented with comments to explain how it works. Do check the implementation for better understanding of the class
+2. Initialising the `IGScrape` class would require arguments to set how many days worth of observation to check/download form Instagram, the hashtag to look for, and the result directory/path. It initialises the `Instaloader` instance for IG scraping and set the target directory for download.
+3. The `scrape_data` method is to scrape IG using the hashtag given in the IGScrape initialisation. User also needs to specify the number of posts limit and whether one wants to download the post, given that the post has geodata. It will iterate through each post until the post limit or no more post left to scrape or the user's Keyboard Interrupt. The user can also chooses to:
    1. Download the posts, which be downloaded in the result directory during the initialisation stage.
    2. Save the summary data of the locations, which will be saved under the name `summary.csv` in the result directory.
 
 ### Scraping
-Run `python3 src/runner_IG_collection.py <hashtag> <number of observation days>  <directory to store results>`.
+If you choose to use the [command line](src/runner_IG_scrape.py), run `python3 src/runner_IG_scrape.py <hashtag> <number of observation days> <maximum number of posts to look at> <directory to store results> <path to config file>`.
+
+If you prefer to use the [GUI](scrape_gui.py), run `python3 scrape_gui.py`.
 
 ### Limitations
-Instaloader is an open-source library, so there might be occassions when the module would stop working due to changes in Instagram API or permissioning. In our testing case, there were times when the program would fail its scraping process due to unexpected reasons but only to work again after a couple of days. If you find a bug or have an idea for improvement, please report it to [Instaloader issues Github page](https://github.com/instaloader/instaloader/issues). Make sure that you comply to the reporting guidelines.
+1. Instaloader is an open-source library, so there might be occassions when the module would stop working due to changes in Instagram API or permissioning. In our testing case, there were times when the program would fail its scraping process due to unexpected reasons but only to work again after a couple of days. If you find a bug or have an idea for improvement, please report it to [Instaloader issues Github page](https://github.com/instaloader/instaloader/issues). Make sure that you comply to the reporting guidelines.
+2. The data gathered is per Instagram post instead of per video in the post.
 
+### Alternative Solution
 You can also choose to work directly with [Instagram API](https://developers.facebook.com/docs/instagram), which would require you to set up a Business or Creator account under [Instagram Professionals](https://help.instagram.com/502981923235522) and an approved app. However, since our main focus of this project was to show a new method that makes Citizen Science more accessible and appealing to the masses, we decided to use Instaloader to skip the permissioning process. Using the [Instagram API](https://developers.facebook.com/docs/instagram) would require us to create a fully functioning app that complies with Instagram's image and guidelines.
 
-We recognise that there is a lot of layers involved if we want to use Instagram API, such as creating a business account and registering the app. It also requires the user to be present to authenticate the account for scraping, which hampers the scraping process.
+We recognise that there is a lot of layers involved if we want to use Instagram API, such as creating a business account and registering the app. It also requires the user to be present to authenticate the account for scraping, which adds friction to the scraping process.
 
 ### Resources
 1. Instaloader: https://instaloader.github.io
@@ -121,12 +120,13 @@ Run `python3 runner_citsci_upload.py <path to config.json> <path_to_folder_to_up
 6. Constraints on username and password flow: https://github.com/AzureAD/microsoft-authentication-library-for-python/wiki/Username-Password-Authentication
 
 ## Automating task
-Scraping is repetitive task that can be automated. The current [runner file](src/runner_IG_collection.py) is designed to scrape resources from 7 days ago on default, so you can choose to build a program that runs the script weekly. Please refer to these resources and adjust accordingly.
+Scraping is repetitive task that can be automated. The current [runner file](src/runner_IG_scrape.py) is designed to scrape resources from 7 days ago on default, so you can choose to build a program that runs the script weekly. Please refer to these resources and adjust accordingly.
 1. For windows user: https://towardsdatascience.com/automate-your-python-scripts-with-task-scheduler-661d0a40b279
 2. For MacOS or Linus user: https://betterprogramming.pub/https-medium-com-ratik96-scheduling-jobs-with-crontab-on-macos-add5a8b26c30
-   1. To help with setting up Cron: https://crontab.guru/#0_0_*_*_1
+   1. To help with setting up Cron: https://crontab.guru/#0_0_\*_*_1
 
 ## Credit
 - Marcellinus Jerricho (marcellinus.jerricho@u.yale-nus.edu.sg)
 - Philip Johns (philip.johns@yale-nus.edu.sg)
 - Jeremy Osborn (osborn.jeremy@gmail.com)
+- Anand Kumar (anandkumar@u.yale-nus.edu.sg)
