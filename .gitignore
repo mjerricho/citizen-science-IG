@@ -130,8 +130,8 @@ dmypy.json
 
 # Others
 .DS_Store
-config.sh
-config.json
+config_ig.json
+config_upload.json
 ffmpeg
 .vscode
 # csv files 
@@ -141,5 +141,5 @@ ffmpeg
 *.png 
 *.mp4
 *.jpg 
-result/
+result*
 testing/

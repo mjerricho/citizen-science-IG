@@ -1,13 +1,12 @@
 import csv
-import os
 from datetime import datetime, timedelta
 from pprint import pprint
-
 import instaloader
 
 
-class IGDataCollection:
-    def __init__(self, num_days_collect=1,
+class IGScrape:
+    def __init__(self,  username, password, 
+                 num_days_collect=1,
                  hashtag="sgotterproject",
                  result_dir="result",
                  debug=False) -> None:
@@ -40,9 +39,8 @@ class IGDataCollection:
                                          download_videos=True,
                                          download_video_thumbnails=False,
                                          download_comments=False)
-
-        self.IG_username = os.environ.get('IG_USERNAME')
-        self.IG_password = os.environ.get('IG_PASSWORD')
+        self.IG_username = username
+        self.IG_password = password
         if self.debug:
             print("Logging in.")
         self.L.login(self.IG_username, self.IG_password)
@@ -60,15 +58,16 @@ class IGDataCollection:
         except NameError:
             return None
 
-    def get_date_month_year(self, post_hashtags):
+    def get_ht_date_month_year(self, post_hashtags):
         '''
         Given the list of hashtags used in the post, this method will
         try to extract the date, month, and year from the specific hashtag
-        starting with "date". One assumption that this method
-        is built on is that the date hashtag will start with
-        "date" and is 12 characters long in total.
-        Example: #date01012022
-
+        starting with "date". 
+        Assumptions:
+        - The date hashtag will start with "date"
+        - The hashtag is 12 characters long in total.
+        Example: 
+            #date01012022
         input:
             post_hashtags<list>
         '''
@@ -76,6 +75,22 @@ class IGDataCollection:
             if ("date" in hashtag) and (len(hashtag) == 12):
                 return hashtag[4:6], hashtag[6:8], hashtag[8:]
         return None, None, None
+
+    def get_ht_location(self, post_hashtags):
+        '''
+        Given the list of hashtags used in the post, this method will extract
+        the location from a specific hashtag starting with "loc".
+        Assumptions:
+        - The location hashtag will start with "loc"
+        Example:
+            #locBishan
+        input:
+            post_hashtags<list>
+        '''
+        for hashtag in post_hashtags:
+            if ("loc" in hashtag):
+                return hashtag[4:]
+        return None
 
     def scrape_data(self, max_num=10, download=True, save_md=False):
         '''
@@ -118,7 +133,7 @@ ID: {post.location.id} | lat: {post.location.lat} | long: {post.location.lng}
                     format = "%Y-%m-%d_%H-%M-%S"
                     postDate = post.date_utc.strftime(format)
                     postID = f"{postDate}_UTC_{post.profile}"
-                    ht_date, ht_month, ht_year = self.get_date_month_year(post.caption_hashtags)
+                    ht_date, ht_month, ht_year = self.get_ht_date_month_year(post.caption_hashtags)
                     mds.append({"postID": self.fbo(postID),
                                 "postDate": self.fbo(postDate),
                                 "locationID": self.fbo(post.location.id),
@@ -135,7 +150,8 @@ ID: {post.location.id} | lat: {post.location.lat} | long: {post.location.lng}
                                 "captionHashtags": self.fbo(post.caption_hashtags),
                                 "hashtag_date": ht_date,
                                 "hashtag_month": ht_month,
-                                "hashtag_year": ht_year})
+                                "hashtag_year": ht_year,
+                                "hashtag_location": self.get_ht_location(post.caption_hashtags)})
                     if download:
                         self.L.download_post(post, target="#hashtag")
                         print(f'''\
