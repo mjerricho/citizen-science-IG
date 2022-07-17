@@ -25,6 +25,8 @@ The `requirements.txt` install the python wrapper for interacting with ffmpeg bu
 4. Check if you have `ffmpeg` installed by running `ffmpeg` in the command line. It should return a text along this line: `ffmpeg version N-105288-g45e45a6060 Copyright (c) 2000-2022 the FFmpeg developers`.
 
 ## Instagram data collection
+![scrape_gui](https://user-images.githubusercontent.com/62823018/179383696-e097eb34-9dec-45fb-a5e3-680279da2913.png)
+
 The [Instagram Data Collection](src/modules/IGScrape.py) is a fast, effective, and low-cost solution for crowdsourcing more observations and raising awareness on a certain subject through social media. As a data collector, you have to [setup](#setup) the program and make sure that participants are aware of the participation [requirements](#participation-requirements). As a participant, you have to **post** the observation with the **necessary hashtags** on a **public account**.
 
 ### Setup
