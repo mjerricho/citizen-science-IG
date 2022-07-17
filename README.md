@@ -1,7 +1,7 @@
 # citizen-science-IG
-This project aims to build a Citizen Science methodology for researchers and data collectors to efficiently and quickly gather photo and video observations of a certain subject. We will be using Instagram as the main platform for data collection due to its popularity and accessibility among users and robust scraper tool for developers. For the case where you already have a repository of data, we also provide a metadata extractor tool to quickly summarise important information. Once you have acquired the observations and metadata needed, we provide an example of how the data gathered can be stored automatically into Microsoft OneDrive under a Microsoft tenant organisation.
+This project aims to build a Citizen Science methodology for researchers and data collectors to efficiently and quickly gather observational photos and videos of a certain subject. We will be using Instagram as the main platform for data collection due to its popularity and accessibility among users and robust scraper tool for developers. For cases where you already have a repository of data, we also provide a metadata extractor tool to quickly summarise important information. Once you have acquired the observations and metadata needed, we provide an example of how the data gathered can be stored automatically into Microsoft OneDrive under a Microsoft tenant organisation.
 
-Please note that the Instagram scraping and metadata extractor tool would be applicable to all users, but the automatic cloud storage would differ significantly for each user. It is advisable to consult your organisation IT team before you start uploading data into cloud storage. This document will be structured according to the following:
+Please note that the Instagram scraping and metadata extractor tool would be applicable to all users, but the automatic cloud storage would differ significantly for each user. You should consult your organisation's IT team before you start uploading data into cloud storage. This document will be structured according to the following:
 1. [Package Installation](#package-installation)
 2. [Instagram data collection](#instagram-data-collection) 
 3. [Manual metadata extraction](#manual-metadata-extraction)
@@ -25,21 +25,21 @@ The `requirements.txt` install the python wrapper for interacting with ffmpeg bu
 4. Check if you have `ffmpeg` installed by running `ffmpeg` in the command line. It should return a text along this line: `ffmpeg version N-105288-g45e45a6060 Copyright (c) 2000-2022 the FFmpeg developers`.
 
 ## Instagram data collection
-The [Instagram Data Collection](src/modules/IGScrape.py) is a fast, effective, and low-cost solution for crowdsourcing more observations and raising awareness on a certain subject through social media. As a data collector, you have to [setup](#setup) the program and make sure that participants are aware of the participation [requirements](#requirements). As a participant, you have to **post** the observation with the **necessary hashtags** on a **public account**.
+The [Instagram Data Collection](src/modules/IGScrape.py) is a fast, effective, and low-cost solution for crowdsourcing more observations and raising awareness on a certain subject through social media. As a data collector, you have to [setup](#setup) the program and make sure that participants are aware of the participation [requirements](#participation-requirements). As a participant, you have to **post** the observation with the **necessary hashtags** on a **public account**.
+
 ### Setup
-1. Create a new dispensable Instagram account solely for scraping for safety reasons. It is also advisable that you create a new dispensable email account for this project for the sign up process.
-2. [Required if you want to uses the Command Line] Duplicate the `config_ig_to_duplicate.json` as `config_ig.json` and fill it up with the necessary information.
-3. Make sure that the Instagram account that you use works by logging in yourself. Clear all setting configurations and other administration process.
+1. For safety reasons, create a new dispensable Instagram account solely for scraping. It is also advisable that you create a new dispensable email account for this project for the sign up process.
+2. Duplicate the `config_ig_to_duplicate.json` as `config_ig.json` and fill it up with the necessary information. This step is required if you want to uses the Command Line scraping methodology.
+3. Make sure that the Instagram account that you use works by logging in yourself. Clear all setting configurations and other administrative barriers.
+4. Update the `Runner_IG_scrape.py` file to either check or download the posts by changing the `download` parameter when `scrape_data` method is called.
 
-### Requirements
-1. Make sure that participants post their observation with geotag on.
-2. Run the [Setup](###Setup) in the command line.
-3. Update the `Runner_IG_scrape.py` file to either check or download the posts.
+### Participation requirements
+1. Make sure that participants post their observations with geotag on.
+2. It is advisable for participants to upload a single video for each post.
 
-### Methodology
-1. The `IGScrape.py` is well-documented with comments to explain how it works. Do check the implementation for better understanding of the class
-2. Initialising the `IGScrape` class would require arguments to set how many days worth of observation to check/download form Instagram, the hashtag to look for, and the result directory/path. It initialises the `Instaloader` instance for IG scraping and set the target directory for download.
-3. The `scrape_data` method is to scrape IG using the hashtag given in the IGScrape initialisation. User also needs to specify the number of posts limit and whether one wants to download the post, given that the post has geodata. It will iterate through each post until the post limit or no more post left to scrape or the user's Keyboard Interrupt. The user can also chooses to:
+### IGScrape class
+1. The `IGScrape` class is well-documented with comments to explain its workings. Do check [IGScrape](src/modules/IGScrape.py) for better understanding of the class.
+2. The `scrape_data` method is to scrape IG using the hashtag given in the `IGScrape` initialisation. User also needs to specify the maximum number of posts to observe and whether one wants to download the post, given that the post has geodata. It will iterate through each post until the post limit is met, no more post left to scrape, or the user's Keyboard Interrupt. The user can also choose to:
    1. Download the posts, which be downloaded in the result directory during the initialisation stage.
    2. Save the summary data of the locations, which will be saved under the name `summary.csv` in the result directory.
 
@@ -47,6 +47,7 @@ The [Instagram Data Collection](src/modules/IGScrape.py) is a fast, effective, a
 If you choose to use the [command line](src/runner_IG_scrape.py), run `python3 src/runner_IG_scrape.py <hashtag> <number of observation days> <maximum number of posts to look at> <directory to store results> <path to config file>`.
 
 If you prefer to use the [GUI](scrape_gui.py), run `python3 scrape_gui.py`.
+using scrape_gui.mov
 
 ### Limitations
 1. Instaloader is an open-source library, so there might be occassions when the module would stop working due to changes in Instagram API or permissioning. In our testing case, there were times when the program would fail its scraping process due to unexpected reasons but only to work again after a couple of days. If you find a bug or have an idea for improvement, please report it to [Instaloader issues Github page](https://github.com/instaloader/instaloader/issues). Make sure that you comply to the reporting guidelines.

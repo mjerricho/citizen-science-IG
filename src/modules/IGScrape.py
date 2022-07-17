@@ -22,6 +22,8 @@ class IGScrape:
         it in the "result" directory.
 
         Input:
+            username<str>: Username of Instagram account used to scrape
+            password<str>: Password of Instagram account used to scrape
             num_days_collect<int>:
                 The number of days (including today) to observe/record.
             hashtag<str>: The hashtag that filter the posts search.
