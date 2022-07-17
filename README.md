@@ -107,7 +107,7 @@ This script complements the citizen science project. After users have uploaded t
 2. The developer has requested permission from the tenant to develop an application and received the necessary information as shown in `config.json`. 
 
 ### Set up
-1. Duplicate the `config_dummy.json`, name it `config.json`, and fill up the necessary information.
+1. Duplicate the `config_upload_to_duplicate.json`, name it `config_upload.json`, and fill up the necessary information.
    1. `client_id` and `client_secret` are given by your administrator (institution/organisation).
    2. `tenant_id`, `team_id`, and `channel_id` can be obtained from Teams application by getting the link to the Teams.
    3. `drive_id` and `item_id` can be obtained from these APIS
