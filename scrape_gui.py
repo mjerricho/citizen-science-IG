@@ -1,6 +1,6 @@
 import sys
 from PyQt6.QtWidgets import ( QMainWindow, QApplication, QLabel, QLineEdit, QPushButton, QLineEdit, QGridLayout, QWidget )
-from modules.IGScrape import IGScrape
+from src.modules.IGScrape import IGScrape
 
 # Constants
 USERNAME = 'username'
