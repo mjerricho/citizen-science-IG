@@ -42,12 +42,17 @@ The [Instagram Data Collection](src/modules/IGScrape.py) is a fast, effective, a
 2. The `scrape_data` method is to scrape IG using the hashtag given in the `IGScrape` initialisation. User also needs to specify the maximum number of posts to observe and whether one wants to download the post, given that the post has geodata. It will iterate through each post until the post limit is met, no more post left to scrape, or the user's Keyboard Interrupt. The user can also choose to:
    1. Download the posts, which be downloaded in the result directory during the initialisation stage.
    2. Save the summary data of the locations, which will be saved under the name `summary.csv` in the result directory.
+![result_csv](https://user-images.githubusercontent.com/62823018/179383565-2cec3d76-3a6b-4407-8a13-a39077be4ac9.png)
 
 ### Scraping
 If you choose to use the [command line](src/runner_IG_scrape.py), run `python3 src/runner_IG_scrape.py <hashtag> <number of observation days> <maximum number of posts to look at> <directory to store results> <path to config file>`.
 
 If you prefer to use the [GUI](scrape_gui.py), run `python3 scrape_gui.py`.
-using scrape_gui.mov
+
+
+https://user-images.githubusercontent.com/62823018/179383256-77317622-92b2-4320-ae5b-bbbd0897a404.mov
+
+
 
 ### Limitations
 1. Instaloader is an open-source library, so there might be occassions when the module would stop working due to changes in Instagram API or permissioning. In our testing case, there were times when the program would fail its scraping process due to unexpected reasons but only to work again after a couple of days. If you find a bug or have an idea for improvement, please report it to [Instaloader issues Github page](https://github.com/instaloader/instaloader/issues). Make sure that you comply to the reporting guidelines.
