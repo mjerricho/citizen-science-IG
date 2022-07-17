@@ -25,6 +25,8 @@ The `requirements.txt` install the python wrapper for interacting with ffmpeg bu
 4. Check if you have `ffmpeg` installed by running `ffmpeg` in the command line. It should return a text along this line: `ffmpeg version N-105288-g45e45a6060 Copyright (c) 2000-2022 the FFmpeg developers`.
 
 ## Instagram data collection
+![scrape_gui](https://user-images.githubusercontent.com/62823018/179383696-e097eb34-9dec-45fb-a5e3-680279da2913.png)
+
 The [Instagram Data Collection](src/modules/IGScrape.py) is a fast, effective, and low-cost solution for crowdsourcing more observations and raising awareness on a certain subject through social media. As a data collector, you have to [setup](#setup) the program and make sure that participants are aware of the participation [requirements](#participation-requirements). As a participant, you have to **post** the observation with the **necessary hashtags** on a **public account**.
 
 ### Setup
@@ -107,7 +109,7 @@ This script complements the citizen science project. After users have uploaded t
 2. The developer has requested permission from the tenant to develop an application and received the necessary information as shown in `config.json`. 
 
 ### Set up
-1. Duplicate the `config_dummy.json`, name it `config.json`, and fill up the necessary information.
+1. Duplicate the `config_upload_to_duplicate.json`, name it `config_upload.json`, and fill up the necessary information.
    1. `client_id` and `client_secret` are given by your administrator (institution/organisation).
    2. `tenant_id`, `team_id`, and `channel_id` can be obtained from Teams application by getting the link to the Teams.
    3. `drive_id` and `item_id` can be obtained from these APIS
